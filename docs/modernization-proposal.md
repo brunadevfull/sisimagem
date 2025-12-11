@@ -47,6 +47,12 @@
 - **Object storage (S3/MinIO) + busca**: arquivos binários devem permanecer em object storage com versionamento; para busca full-text em campos e conteúdo, usar **OpenSearch/Elasticsearch** alimentado por pipelines de indexação a partir do storage ou do banco relacional.
 - **Governança e consistência**: manter o catálogo/índices primários de documentos no banco relacional para garantir integridade referencial; MongoDB ou índices de busca ficam como repositórios complementares acessados via adaptadores específicos no domínio.
 
+#### Por que PostgreSQL e como conviver com o banco legado
+- **Motivação para PostgreSQL**: é um SGBD relacional moderno, com recursos avançados (JSONB, particionamento nativo, índices variados, janela analítica), licenciamento aberto e forte ecossistema de ferramentas. Ele reduz custos e viabiliza evolução do modelo de dados sem depender de features proprietárias do Oracle, além de integrar-se bem com ORMs e Testcontainers.
+- **Compatibilidade com o banco legado**: durante a transição, o sistema deve **manter acesso pleno ao Oracle** (ou outro SGBD legado) através de adaptadores dedicados e pools separados. Nenhuma funcionalidade é descontinuada antes de existir paridade de comportamento comprovada via testes de regressão.
+- **Quantas strings de conexão?**: use **duas conexões isoladas** no back-end (ex.: `datasource.oracle` e `datasource.novo`) com pools independentes. Operações que ainda dependem do schema legado usam o adaptador Oracle; novos módulos gravam no PostgreSQL. Isso evita bloqueios e facilita rollbacks graduais.
+- **Migração/convivência de dados**: implementar replicação ou jobs de sincronização (CDC ou ETL incremental) para copiar metadados chave do Oracle para PostgreSQL, mantendo checksums e reconciliação automatizada. Uma camada anti-corruption no domínio mapeia diferenças de tipos/códigos e garante que a API permaneça consistente enquanto há dual-write/read.
+
 ### Stack alternativa com compatibilidade total ao banco legado
 - **Back-end**: Node.js 20+ com NestJS (TypeScript) para estrutura modular e suporte a injeção de dependências; opção de Python FastAPI mantendo adaptadores Oracle.
 - **Acesso ao banco legado**: drivers oficiais Oracle (node-oracledb/odpi-c) ou SQLAlchemy + cx_Oracle, encapsulados em repositórios que expõem consultas e procedures existentes sem alterar o schema; uso de connection pool (SessionPool) e mapeamentos read-only para operações que devam preservar o comportamento atual.
