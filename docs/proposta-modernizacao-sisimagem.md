@@ -2,7 +2,7 @@
 
 ## 1. Contexto
 ### 1.1 Descrição breve do sistema atual
-O SisImagem é uma aplicação web monolítica que concentra autenticação, pesquisa e inclusão de documentos, armazenando metadados no Oracle/TRIM e arquivos em diretório local do servidor de aplicação. A navegação ocorre por páginas JSP servidas por servlets e jQuery 1.4.2 para interações básicas no navegador.
+O SisImagem é uma aplicação web monolítica que concentra autenticação, pesquisa e inclusão de documentos, armazenando metadados no Oracle/TRIM e arquivos em diretório local do servidor de aplicação on-premises. A navegação ocorre por páginas JSP servidas por servlets e jQuery 1.4.2 para interações básicas no navegador.
 
 ### 1.2 Principais limitações do sistema legado
 - **Arquitetura monolítica e acoplada**: difícil de evoluir modularmente, exige implantação completa a cada alteração e depende de servidor de aplicação compatível com Java EE 7.
@@ -19,33 +19,33 @@ Reescrever o SisImagem como uma plataforma modular em arquitetura de microsservi
 ### 2.2 Tecnologias propostas
 - **Back-end**: microserviços em Node.js 20 com NestJS (TypeScript), APIs REST e GraphQL, segurança com OpenID Connect (Keycloak/ADFS/Azure AD) e mensageria com Kafka para fluxos assíncronos (ex.: indexação, notificações, ETL).
 - **Front-end**: SPA em React 18 + TypeScript, design system corporativo, React Query para caching de dados, componentes responsivos e acessíveis (WCAG 2.1).
-- **Banco de dados**: Postgres para dados transacionais; armazenamento de objetos em S3 compatível (ou Azure Blob/GCP Storage) para documentos; mecanismo de busca full-text com OpenSearch/Elasticsearch para consultas rápidas.
-- **Infraestrutura**: containerização com Docker e orquestração em Kubernetes; provisionamento via Terraform/Helm; feature flags para releases seguros; observabilidade com Prometheus/Grafana/Loki e tracing com OpenTelemetry.
+- **Banco de dados**: Postgres para dados transacionais; armazenamento de objetos on-premises compatível com S3 (ex.: MinIO) para documentos; mecanismo de busca full-text com OpenSearch/Elasticsearch para consultas rápidas.
+- **Infraestrutura**: containerização com Docker e orquestração leve com Docker Compose ou Swarm em data center próprio; provisionamento automatizado com Ansible/Terraform para VMs; feature flags para releases seguros; observabilidade com Prometheus/Grafana/Loki e tracing com OpenTelemetry.
 - **CI/CD**: pipelines em GitHub Actions/GitLab CI com build, testes unitários/integração, scans de qualidade (SonarQube), SAST/DAST, geração de artefatos e deploy automatizado para ambientes dev/homolog/produção.
 
 ### 2.3 Benefícios diretos
 - **Manutenção e evolutividade**: serviços pequenos, bem separados e fáceis de testar, reduzindo risco de regressão e acelerando entregas.
 - **Segurança**: autenticação centralizada com MFA/SSO, gestão protegida de segredos e trilhas de auditoria para conformidade.
-- **Performance e escalabilidade**: aumento automático de capacidade em picos, uso de cache e filas para manter tempo de resposta baixo mesmo com mais usuários.
+- **Performance e escalabilidade**: capacidade de escalar horizontalmente os serviços on-premises conforme a demanda, uso de cache e filas para manter tempo de resposta baixo mesmo com mais usuários.
 - **Experiência do usuário**: interface moderna, responsiva e com notificações em tempo real; suporte pleno a dispositivos móveis.
 - **Integração futura**: APIs padronizadas e eventos facilitam conexão com outros sistemas corporativos, preservando rastreabilidade.
 - **Resiliência operacional**: implantações graduais (blue/green, canary), monitoramento em tempo real e mecanismos de tolerância a falhas.
 
 ## 3. Comparação Legado x Novo
-- **Arquitetura**: monolito Java EE em servidor de aplicação **→** microsserviços em Node.js/NestJS rodando em Kubernetes.
+- **Arquitetura**: monolito Java EE em servidor de aplicação **→** microsserviços em Node.js/NestJS orquestrados on-premises com Docker Compose/Swarm.
 - **Front-end**: JSP + jQuery 1.4.2 **→** React/TypeScript com design system e build moderno.
-- **Banco/arquivos**: Oracle/TRIM + diretório local **→** Postgres + storage S3 + busca OpenSearch.
+- **Banco/arquivos**: Oracle/TRIM + diretório local **→** Postgres + storage compatível com S3 on-premises + busca OpenSearch.
 - **Autenticação**: login próprio e sessões em servidor **→** OpenID Connect, tokens JWT e MFA.
-- **Implantação**: builds manuais em WAR **→** pipelines CI/CD com imagens Docker e deploy automatizado.
+- **Implantação**: builds manuais em WAR **→** pipelines CI/CD com imagens Docker e deploy automatizado para VMs on-premises.
 - **Observabilidade**: logs em arquivo local **→** métricas, logs centralizados e tracing distribuído.
-- **Escalabilidade**: instância única ou cluster manual **→** autoscaling e alta disponibilidade gerenciada.
+- **Escalabilidade**: instância única ou cluster manual **→** escalonamento horizontal controlado em contêineres on-premises e alta disponibilidade.
 - **Experiência**: formulários estáticos **→** SPA responsiva com UX consistente e suporte mobile.
 
 ## 4. Plano de Migração
 1. **Levantamento e arquitetura**: mapear domínios, fluxos críticos (login, busca, inclusão, anexos) e dependências externas; definir módulos de negócio e contratos de API claros.
-2. **Prova de conceito**: implementar núcleo de autenticação via OpenID Connect e um serviço de documentos mínimo (CRUD + upload em storage S3) com front-end React básico.
+2. **Prova de conceito**: implementar núcleo de autenticação via OpenID Connect e um serviço de documentos mínimo (CRUD + upload em storage compatível com S3 on-premises) com front-end React básico.
 3. **Faseamento por módulos**: entregar serviços em ondas (autenticação/usuários, documentos/metadados, anexos/arquivos, pesquisa full-text, auditoria) com gateways de compatibilidade REST.
-4. **Dados e integrações**: planejar ETL de metadados do Oracle/TRIM para Postgres e migração de arquivos para S3; criar conectores para coexistência temporária com o TRIM durante a transição.
+4. **Dados e integrações**: planejar ETL de metadados do Oracle/TRIM para Postgres e migração de arquivos para storage compatível com S3 on-premises; criar conectores para coexistência temporária com o TRIM durante a transição.
 5. **Testes e qualidade**: testes unitários/integração, contratos de API, testes end-to-end e desempenho; habilitar SAST/DAST na pipeline.
 6. **Transição gradual**: adotar estratégia strangler, roteando partes do tráfego pelo API Gateway para novos serviços; manter operação do legado até completar migração de cada fluxo.
 7. **Go-live e suporte**: executar blue/green, monitorar KPIs (latência, erros, throughput, adesão MFA) e estabelecer runbooks e acordos de nível de serviço.
