@@ -1,5 +1,12 @@
 # Proposta de Modernização do SisImagem
 
+## Comparativo resumido: sistema legado vs. proposta
+- **Arquitetura**: legado em servlets/JSP acoplados a DAOs JDBC com conexões compartilhadas; proposta em camadas hexagonais com APIs REST, IoC e adaptadores para persistência e storage.
+- **Tecnologia**: Java 1.4/JSP/jQuery 1.4.2 no legado; proposta sem Java priorizando FastAPI/Go ou NestJS, SPA em React/Next.js/Angular e ORM com pooling seguro.
+- **Banco e armazenamento**: legado concentra metadados e arquivos no Oracle/TRIM e diretório de rede; proposta mantém leitura/escrita no Oracle via drivers oficiais durante a transição e adiciona PostgreSQL + object storage versionado, com opção complementar de MongoDB/OpenSearch para documentos.
+- **Segurança e observabilidade**: legado sem hashing forte, logging mínimo e sem métricas; proposta traz OAuth2/OIDC, RBAC, validação de entrada, logs estruturados, métricas/tracing (OpenTelemetry) e hardening.
+- **Experiência do usuário**: legado com JSP não responsivo; proposta com SPA responsiva, uploads com feedback, busca avançada e acessibilidade.
+
 ## 1. Modelo de negócio atendido
 - **Gestão de documentos e anexos**: autenticação de usuários, pesquisa e detalhamento de registros, inclusão de documentos/anexos (fluxos PAPEM-41/42) e geração de identificadores sequenciais no repositório TRIM/Oracle e diretório de arquivos no servidor.
 - **Fluxos operacionais**: upload/scan de documentos, controle de usuários e grupos, e fornecimento de arquivos para download/visualização conforme permissões.
