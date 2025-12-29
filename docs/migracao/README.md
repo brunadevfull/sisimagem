@@ -2,7 +2,7 @@
 
 ## 📋 Índice de Documentos de Migração
 
-Esta pasta contém toda a documentação técnica necessária para migrar o SisImagem de tecnologias legadas (Java/Oracle) para tecnologias modernas (Node.js/PostgreSQL).
+Esta pasta contém a documentação técnica necessária para migrar o SisImagem de tecnologias legadas (Java/Oracle) para tecnologias modernas (Node.js/PostgreSQL). Eu uso este índice para navegar pelos materiais de migração.
 
 ---
 
@@ -17,7 +17,6 @@ Esta pasta contém toda a documentação técnica necessária para migrar o SisI
 - ✅ Comparativo Node.js vs PHP vs Java
 - ✅ Comparativo de ORMs (Prisma vs TypeORM vs Sequelize)
 - ✅ Comparativo de Frameworks Frontend
-- ✅ Análise de custos (5 anos)
 - ✅ Cronograma de migração (36 semanas)
 
 **Quando ler**: Antes de tomar decisões sobre stack tecnológica
@@ -38,49 +37,6 @@ Esta pasta contém toda a documentação técnica necessária para migrar o SisI
 - ✅ Monitoramento pós-migração
 
 **Quando ler**: Ao planejar a migração de banco de dados
-
----
-
-## 🎯 Decisões Chave
-
-### Stack Recomendada
-
-**Backend:**
-- Node.js 20 LTS
-- Express.js ou Fastify
-- TypeScript 5.x
-- Prisma ORM 5.x
-- PostgreSQL 15
-
-**Frontend:**
-- Next.js 14
-- TypeScript 5.x
-- Tailwind CSS + shadcn/ui
-- React Query + Zustand
-
-**Justificativa:**
-- 🚀 Performance superior
-- 🔒 Segurança moderna
-- 📱 Interface responsiva
-- 🌐 Sem vendor lock-in
-
----
-
-## 📊 Resumo de Custos
-
-### Comparação: Oracle vs PostgreSQL (5 anos)
-
-| Item | Oracle + Java | PostgreSQL + Node.js | Economia |
-|------|---------------|----------------------|----------|
-| Licenças de BD | R$ 199.500 | R$ 0 | R$ 199.500 |
-| Servidor de Aplicação | R$ 50.000 | R$ 0 | R$ 50.000 |
-| Desenvolvimento | R$ 550.000 | R$ 450.000 | R$ 100.000 |
-| Infraestrutura | R$ 80.000 | R$ 60.000 | R$ 20.000 |
-| Treinamento | R$ 30.000 | R$ 20.000 | R$ 10.000 |
-| Manutenção | R$ 150.000 | R$ 100.000 | R$ 50.000 |
-| **TOTAL** | **R$ 1.059.500** | **R$ 630.000** | **R$ 429.500** |
-
-**💰 Economia Total: 40.5%**
 
 ---
 
@@ -138,21 +94,11 @@ gantt
 
 ### Imediatos (Semana 1-2)
 
-1. **Aprovar Stack Tecnológica**
+1. **Revisar comparativos técnicos**
    - Revisar [comparativo técnico](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
-   - Decisão: Node.js + PostgreSQL
+   - Definir critérios de decisão
 
-2. **Aprovar Orçamento**
-   - Migração de banco: R$ 91.200
-   - Desenvolvimento total: R$ 630.000 (5 anos)
-
-3. **Montar Equipe**
-   - 1 Tech Lead Full-stack
-   - 2 Desenvolvedores Full-stack Sênior
-   - 1 Desenvolvedor Frontend
-   - 0.5 DevOps/SysAdmin
-
-4. **Obter Acesso ao Oracle**
+2. **Obter Acesso ao Oracle**
    - Credenciais de produção (read-only)
    - Credenciais de homologação (read-write)
 
@@ -187,35 +133,21 @@ gantt
 
 ---
 
-## 📖 Como Usar Esta Documentação
+## ✅ Checklist de decisões de migração
 
-### Para Gestores/Decisores
+- [ ] Definir critérios de comparação (segurança, manutenção, custo operacional, equipe disponível).
+- [ ] Comparar opções de backend, frontend e banco.
+- [ ] Validar compatibilidade de queries Oracle → alternativa escolhida.
+- [ ] Definir estratégia de migração (incremental ou completa).
+- [ ] Documentar decisões e pendências.
 
-1. Leia o **Resumo de Custos** acima
-2. Revise a seção **Decisões Chave**
-3. Analise os **Riscos Principais**
-4. Aprove orçamento e cronograma
+---
 
-### Para Arquitetos/Tech Leads
+## 📖 Como uso esta documentação
 
-1. Leia o [Comparativo Técnico Detalhado](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
-2. Revise a stack recomendada
-3. Valide decisões técnicas
-4. Planeje arquitetura detalhada
-
-### Para DBAs
-
-1. Leia o [Plano de Migração Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md)
-2. Execute Fase 1: Análise
-3. Prepare ambiente PostgreSQL
-4. Execute migração de dados
-
-### Para Desenvolvedores
-
-1. Familiarize-se com a stack (Node.js + TypeScript + Prisma + Next.js)
-2. Revise exemplos de código nos documentos
-3. Siga padrões definidos
-4. Participe de code reviews
+1. Leio o comparativo técnico enquanto a stack estiver em avaliação.
+2. Uso o plano de migração como checklist quando eu estiver executando a mudança do banco.
+3. Consulto o cronograma quando preciso revisar prazos e dependências.
 
 ---
 

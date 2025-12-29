@@ -1,7 +1,7 @@
 # Guia de Documentação e Reengenharia do SisImagem
 
 ## 1. Propósito do documento
-Este guia consolida requisitos funcionais, arquitetura técnica, orientações de documentação UML e instruções operacionais do SisImagem. Ele foi pensado para equipes que desejam manter o sistema atual ou reimplementá-lo em outra linguagem, preservando comportamento e integrações originais.
+Este guia consolida requisitos funcionais, arquitetura técnica, orientações de documentação UML e instruções operacionais do SisImagem. Ele foi pensado para meu uso no dia a dia, com apoio de duas pessoas que ajudam na operação, mantendo o sistema atual ou reimplementando-o em outra linguagem quando necessário, sem perder comportamento e integrações originais.
 
 ## 2. Panorama geral do sistema
 - **Papel do front controller:** todo fluxo HTTP passa por `ServletControlador`, que registra comandos na inicialização e delega cada requisição a uma operação concreta após validar a sessão.【F:src/main/java/controller/ServletControlador.java†L3-L132】  
