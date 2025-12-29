@@ -21,7 +21,7 @@ Escrevi este documento para concentrar as recomendações de stack, arquitetura 
 
 ### Infraestrutura
 - **SO**: Ubuntu Server 22.04 LTS
-- **Proxy**: Nginx
+- **Proxy**: Apache (reverse proxy)
 - **Process Manager**: PM2
 - **Cache**: Redis 7
 
@@ -29,6 +29,7 @@ Escrevi este documento para concentrar as recomendações de stack, arquitetura 
 
 ## 🧱 Recomendações de arquitetura
 
+- **Padrões possíveis**: MVC, Hexagonal, Clean Architecture (avaliar qual encaixa melhor).
 - **Manter um front controller** (ou equivalente) para preservar o fluxo de comandos do sistema atual.
 - **Separar camadas** (controller/handler, serviço, domínio, persistência).
 - **DTOs claros** entre camadas para reduzir acoplamento.

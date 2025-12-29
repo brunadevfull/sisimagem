@@ -688,9 +688,30 @@ backend/
 
 ---
 
-## 📊 PARTE 4: RESUMO EM AVALIAÇÃO
+## 📊 PARTE 4: RESUMO E RECOMENDAÇÃO (rascunho)
 
-Este comparativo serve como base para decisão. A stack ainda está em avaliação.
+Este comparativo serve como base para decisão. A stack ainda está em avaliação, mas hoje a recomendação segue abaixo.
+
+### Recomendação atual (rascunho)
+
+**Backend:**
+- Node.js 20 LTS
+- Express.js ou Fastify
+- TypeScript 5.x
+- Prisma ORM 5.x
+- PostgreSQL 15
+
+**Frontend:**
+- Next.js 14
+- TypeScript 5.x
+- Tailwind CSS + shadcn/ui
+- React Query + Zustand
+
+**Infraestrutura:**
+- Ubuntu Server 22.04 LTS
+- Apache (reverse proxy)
+- PM2 (process manager)
+- Redis 7
 
 ### Checklist de decisão técnica
 
