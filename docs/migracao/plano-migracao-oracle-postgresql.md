@@ -2,7 +2,7 @@
 
 ## 🎯 Objetivo
 
-Migrar o banco de dados do SisImagem de **Oracle SQL (TRIM)** para **PostgreSQL 15** com **zero perda de dados** e **mínimo downtime**.
+Migrar o banco de dados do SisImagem de **Oracle SQL (TRIM)** para **PostgreSQL 15** com **zero perda de dados** e **mínimo downtime**. Este plano foi escrito por mim para servir como roteiro de execução e checklist.
 
 ---
 
@@ -16,7 +16,6 @@ Migrar o banco de dados do SisImagem de **Oracle SQL (TRIM)** para **PostgreSQL 
 | **Downtime Máximo** | 4 horas (janela de manutenção) |
 | **Duração Total** | 6 semanas |
 | **Risco Geral** | 🟡 Médio-Alto |
-| **Investimento** | R$ 80.000 - R$ 120.000 |
 
 ---
 
@@ -879,7 +878,6 @@ echo "[$DATE] Backup realizado com sucesso" >> /var/log/pg_backup.log
 - [ ] Validação de dados OK
 - [ ] Testes funcionais OK
 - [ ] Testes de performance OK
-- [ ] Equipe de suporte em standby
 - [ ] Plano de rollback documentado
 
 **Durante Go-Live:**
@@ -894,7 +892,7 @@ echo "[$DATE] Backup realizado com sucesso" >> /var/log/pg_backup.log
 - [ ] Monitorar logs (primeiras 4 horas)
 - [ ] Monitorar performance
 - [ ] Validar operações críticas
-- [ ] Comunicar sucesso aos stakeholders
+- [ ] Registrar status da migração
 
 ### 6.3 Plano de Rollback
 
@@ -972,25 +970,6 @@ GROUP BY datname;
 
 ---
 
-## 💰 Estimativa de Custos
-
-| Item | Custo |
-|------|-------|
-| **Recursos Humanos** | |
-| DBA PostgreSQL (6 semanas) | R$ 36.000 |
-| Desenvolvedor Backend (6 semanas) | R$ 24.000 |
-| QA/Tester (2 semanas) | R$ 8.000 |
-| **Ferramentas** | |
-| ora2pg (open-source) | R$ 0 |
-| Monitoramento (Datadog/New Relic) | R$ 2.000 |
-| **Infraestrutura** | |
-| Servidor PostgreSQL (6 meses) | R$ 4.800 |
-| Backup storage | R$ 1.200 |
-| **Contingência (20%)** | R$ 15.200 |
-| **TOTAL** | **R$ 91.200** |
-
----
-
 ## ⚠️ Riscos e Mitigações
 
 | Risco | Probabilidade | Impacto | Mitigação |
@@ -1005,13 +984,13 @@ GROUP BY datname;
 
 ## 📅 Cronograma Detalhado
 
-| Semana | Atividades | Responsável |
-|--------|-----------|-------------|
-| 1 | Análise e inventário Oracle | DBA |
-| 2 | Setup PostgreSQL + conversão schema | DBA + Dev |
-| 3-4 | Migração de dados + validação | DBA |
-| 5 | Testes funcionais e performance | QA + Dev |
-| 6 | Deploy e go-live | Toda equipe |
+| Semana | Atividades |
+|--------|-----------|
+| 1 | Análise e inventário Oracle |
+| 2 | Setup PostgreSQL + conversão schema |
+| 3-4 | Migração de dados + validação |
+| 5 | Testes funcionais e performance |
+| 6 | Deploy e go-live |
 
 ---
 
@@ -1019,10 +998,9 @@ GROUP BY datname;
 
 Esta migração Oracle → PostgreSQL é **viável e recomendada**, com os seguintes benefícios:
 
-1. **💰 Economia de $150k+ em 5 anos**
-2. **🚀 Performance igual ou superior**
-3. **🔒 Segurança moderna**
-4. **🌐 Sem vendor lock-in**
-5. **📈 Escalabilidade**
+1. **🚀 Performance igual ou superior**
+2. **🔒 Segurança moderna**
+3. **🌐 Sem vendor lock-in**
+4. **📈 Escalabilidade**
 
-**Próximo Passo**: Aprovar orçamento de R$ 91.200 e iniciar Fase 1.
+**Próximo Passo**: Iniciar Fase 1.

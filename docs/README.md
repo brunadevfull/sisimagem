@@ -1,6 +1,6 @@
 # Documentação do SisImagem
 
-Sistema de Gestão de Documentos PAPEM-41/42
+Sistema de Gestão de Documentos PAPEM-41/42 da PAPEM (instituição governamental). Este material foi escrito por mim para registrar o que existe hoje e orientar a manutenção. Sou a única programadora e conto com duas pessoas de apoio na operação.
 
 ---
 
@@ -96,13 +96,6 @@ docs/
 - ✅ **Type safety** com TypeScript
 - ✅ **Escalabilidade** horizontal
 
-### Operacionais
-- ✅ **Sem licenças proprietárias** (Oracle)
-- ✅ **Comunidade ativa** e suporte
-- ✅ **Facilidade de contratação** de desenvolvedores
-- ✅ **Tecnologias modernas** e atualizadas
-- ✅ **Sem vendor lock-in**
-
 ---
 
 ## 📅 Cronograma Geral
@@ -157,9 +150,8 @@ docs/
 
 ### Imediatos
 1. ✅ Aprovar stack tecnológica (Node.js + PostgreSQL)
-2. ⏳ Montar equipe técnica
-3. ⏳ Obter acesso ao Oracle (read-only)
-4. ⏳ Iniciar análise detalhada do banco
+2. ⏳ Obter acesso ao Oracle (read-only)
+3. ⏳ Iniciar análise detalhada do banco
 
 ### Curto Prazo
 5. ⏳ Extração completa do schema Oracle
@@ -173,31 +165,12 @@ docs/
 
 ---
 
-## 📖 Como Usar Esta Documentação
+## 📖 Como Uso Esta Documentação
 
-### Para Gestores
-1. Leia este README
-2. Revise [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
-3. Analise riscos e cronograma
-4. Aprove decisões técnicas
-
-### Para Arquitetos/Tech Leads
-1. Estude [Análise Técnica](file:///home/bruna/sisimagem/docs/reverse-engineering-report.md)
-2. Revise [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
-3. Valide stack recomendada
-4. Planeje arquitetura detalhada
-
-### Para DBAs
-1. Leia [Plano de Migração Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md)
-2. Execute análise do banco atual
-3. Prepare ambiente PostgreSQL
-4. Execute migração de dados
-
-### Para Desenvolvedores
-1. Familiarize-se com a stack (Node.js + TypeScript + Prisma + Next.js)
-2. Revise exemplos de código nos documentos
-3. Siga padrões definidos
-4. Participe de code reviews
+1. Leio este README para manter a visão geral e o estado dos documentos.
+2. Consulto o [Guia de Documentação](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md) sempre que preciso mapear fluxos ou regras.
+3. Acesso o [Plano de Migração Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md) quando estou avaliando a migração do banco.
+4. Uso o [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md) apenas como referência técnica.
 
 ---
 
