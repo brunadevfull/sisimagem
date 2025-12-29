@@ -210,7 +210,7 @@ Extrair e documentar todas as regras de negócio embutidas no código.
 # Fontes:
 # - Labels em JSPs
 # - Comentários no código
-# - Entrevistas com usuários/stakeholders
+# - Entrevistas com usuários-chave
 ```
 
 **Dia 3-4: Regras de Validação**
