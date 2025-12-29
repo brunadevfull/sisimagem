@@ -2,7 +2,7 @@
 
 ## 📊 Visão Geral Executiva
 
-Este documento apresenta uma análise técnica aprofundada das opções de tecnologia para migração do SisImagem, com **ênfase especial na migração crítica do banco de dados Oracle para PostgreSQL**.
+Escrevi este documento para registrar, de forma prática, a análise técnica das opções de tecnologia para migração do SisImagem, com **ênfase especial na migração crítica do banco de dados Oracle para PostgreSQL**.
 
 ---
 
@@ -260,39 +260,7 @@ WHERE login = $1 AND senha = $2;
 | **Full-text search** | Bom (Oracle Text) | Excelente (nativo) | 🟢 PostgreSQL |
 | **JSON/NoSQL** | Bom (12c+) | Excelente (JSONB) | 🟢 PostgreSQL |
 | **Geoespacial** | Excelente (Spatial) | Excelente (PostGIS) | 🟰 Empate |
-| **Custo de licença** | $$$$$ | Grátis | 🟢 PostgreSQL |
-| **Suporte comercial** | Excelente | Bom (várias empresas) | 🔵 Oracle |
 | **Comunidade** | Boa | Excelente | 🟢 PostgreSQL |
-
----
-
-### 1.8 Custos: Oracle vs PostgreSQL
-
-#### Oracle (Atual)
-
-**Licenciamento:**
-- Oracle Database Standard Edition: ~$17,500 por processador
-- Oracle Database Enterprise Edition: ~$47,500 por processador
-- Suporte anual: 22% do valor da licença
-
-**Exemplo para 2 processadores:**
-- Licença EE: $95,000
-- Suporte anual: $20,900
-- **Total 5 anos**: $199,500
-
-#### PostgreSQL (Proposto)
-
-**Licenciamento:**
-- ✅ **Grátis** (open-source)
-- ✅ Sem custo de licença
-- ✅ Sem custo de suporte obrigatório
-
-**Custos Opcionais:**
-- Suporte comercial (opcional): $2,000 - $10,000/ano
-- Treinamento: $5,000 - $15,000 (one-time)
-- **Total 5 anos**: $10,000 - $50,000
-
-**💰 ECONOMIA: $149,500 - $189,500 em 5 anos**
 
 ---
 
@@ -527,7 +495,6 @@ pgbench -c 50 -j 4 -t 1000 sisimagem
 | **Curva de aprendizado** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | 15% |
 | **Ecossistema** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 15% |
 | **Comunidade** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | 10% |
-| **Custo de desenvolvimento** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | 15% |
 | **Escalabilidade** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 15% |
 | **Type safety** | ⭐⭐⭐⭐ (TS) | ⭐⭐⭐ (8.0+) | ⭐⭐⭐⭐⭐ | 10% |
 
@@ -691,7 +658,7 @@ backend/
 - ❌ **Linguagem diferente** do frontend
 
 **Quando Escolher:**
-- Equipe já experiente em PHP
+- Já existe experiência em PHP
 - Infraestrutura PHP existente
 - Preferência por framework opinado
 
@@ -709,7 +676,6 @@ backend/
 | **SSR/SSG** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | **TypeScript** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | **Comunidade** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Vagas de emprego** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ |
 
 **🏆 RECOMENDAÇÃO: Next.js 14**
 
@@ -772,29 +738,25 @@ graph TB
 
 #### Por que PostgreSQL?
 
-1. **Custo Zero de Licenciamento**
-   - Economia de $150k+ em 5 anos vs Oracle
-   - Sem vendor lock-in
-
-2. **Features Modernas**
+1. **Features Modernas**
    - JSONB nativo (documentos semi-estruturados)
    - Full-text search nativo
    - Arrays e tipos compostos
    - Window functions
    - CTEs recursivos
 
-3. **Performance Excelente**
+2. **Performance Excelente**
    - MVCC para concorrência
    - Índices avançados (GiST, GIN, BRIN)
    - Particionamento nativo
    - Parallel queries
 
-4. **Ecossistema Rico**
+3. **Ecossistema Rico**
    - PostGIS para dados geoespaciais
    - pg_trgm para busca fuzzy
    - Extensões para tudo
 
-5. **Compatibilidade com ORMs**
+4. **Compatibilidade com ORMs**
    - Prisma, TypeORM, Sequelize
    - Migrations automáticas
    - Type-safe queries
@@ -819,9 +781,8 @@ graph TB
    - Refactoring seguro
 
 4. **Moderno e Ativo**
-   - Comunidade enorme
+   - Comunidade grande
    - Atualizações frequentes
-   - Muitas vagas de emprego
 
 ---
 
@@ -838,26 +799,9 @@ graph TB
    - Image optimization automática
    - Code splitting automático
 
-3. **Ecosystem React**
+3. **Ecossistema React**
    - Maior comunidade frontend
    - Mais componentes disponíveis
-   - Mais vagas de emprego
-
----
-
-### 4.3 Comparação de Custos (5 anos)
-
-| Item | Oracle + Java | PostgreSQL + Node.js | Economia |
-|------|---------------|----------------------|----------|
-| **Licenças de BD** | $199,500 | $0 | $199,500 |
-| **Servidor de Aplicação** | $50,000 (WebLogic) | $0 | $50,000 |
-| **Desenvolvimento** | $550,000 | $450,000 | $100,000 |
-| **Infraestrutura** | $80,000 | $60,000 | $20,000 |
-| **Treinamento** | $30,000 | $20,000 | $10,000 |
-| **Manutenção** | $150,000 | $100,000 | $50,000 |
-| **TOTAL** | **$1,059,500** | **$630,000** | **$429,500** |
-
-**💰 ECONOMIA TOTAL: $429,500 (40.5%)**
 
 ---
 
@@ -868,7 +812,6 @@ graph TB
 - ✅ Extração completa do schema Oracle
 - ✅ Análise de incompatibilidades
 - ✅ Setup de ambientes (dev, staging, prod)
-- ✅ Treinamento da equipe
 
 #### Fase 1: Migração de Banco (6 semanas)
 
@@ -943,23 +886,20 @@ graph TB
 
 ### Benefícios Principais
 
-1. **💰 Economia de $429,500 em 5 anos**
-2. **🚀 Performance superior** (I/O e concorrência)
-3. **🔒 Segurança moderna** (sem SQL injection)
-4. **📱 Interface responsiva** e moderna
-5. **🛠️ Manutenibilidade** muito melhor
-6. **👥 Facilidade de contratar** desenvolvedores
-7. **🌐 Sem vendor lock-in**
-8. **📈 Escalabilidade** horizontal fácil
+1. **🚀 Performance superior** (I/O e concorrência)
+2. **🔒 Segurança moderna** (sem SQL injection)
+3. **📱 Interface responsiva** e moderna
+4. **🛠️ Manutenibilidade** muito melhor
+5. **🌐 Sem vendor lock-in**
+6. **📈 Escalabilidade** horizontal fácil
 
 ### Próximos Passos
 
 1. **Aprovar stack tecnológica**
-2. **Montar equipe** (2-3 devs + 1 DevOps)
-3. **Iniciar Fase 0** (preparação)
-4. **Executar migração** de banco (crítico!)
-5. **Desenvolvimento iterativo** com sprints de 2 semanas
+2. **Iniciar Fase 0** (preparação)
+3. **Executar migração** de banco (crítico!)
+4. **Desenvolvimento iterativo** com sprints de 2 semanas
 
 ---
 
-**Esta migração para PostgreSQL + Node.js + Next.js oferece a melhor relação custo-benefício, performance e modernidade para o SisImagem.**
+**Esta migração para PostgreSQL + Node.js + Next.js oferece a melhor relação técnica, performance e modernidade para o SisImagem.**
