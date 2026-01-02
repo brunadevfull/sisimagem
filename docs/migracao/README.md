@@ -8,7 +8,7 @@ Esta pasta contém a documentação técnica necessária para migrar o SisImagem
 
 ## 📚 Documentos Disponíveis
 
-### 1. [Comparativo Técnico Detalhado](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
+### 1. [Comparativo Técnico Detalhado](./comparativo-tecnologias-detalhado.md)
 
 **Descrição**: Análise técnica aprofundada comparando tecnologias para migração.
 
@@ -23,7 +23,7 @@ Esta pasta contém a documentação técnica necessária para migrar o SisImagem
 
 ---
 
-### 2. [Plano de Migração Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md)
+### 2. [Plano de Migração Oracle → PostgreSQL](./plano-migracao-oracle-postgresql.md)
 
 **Descrição**: Plano detalhado e prático para migração do banco de dados.
 
@@ -120,7 +120,7 @@ gantt
 ### Imediatos (Semana 1-2)
 
 1. **Revisar comparativos técnicos**
-   - Revisar [comparativo técnico](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
+   - Revisar [comparativo técnico](./comparativo-tecnologias-detalhado.md)
    - Definir critérios de decisão
    - Decisão: Node.js + PostgreSQL
 
@@ -143,7 +143,7 @@ gantt
 ### Médio Prazo (Semana 7-18)
 
 7. **Migração de Banco de Dados**
-   - Seguir [plano de migração](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md)
+   - Seguir [plano de migração](./plano-migracao-oracle-postgresql.md)
    - Validação rigorosa
    - Testes de performance
 
@@ -169,9 +169,6 @@ gantt
 
 ---
 
-## 📖 Como uso esta documentação
-
-1. Leio o comparativo técnico enquanto a stack estiver em avaliação.
 ## 📖 Como Uso Esta Documentação
 
 1. Leio o comparativo técnico antes de consolidar decisões de stack.
@@ -184,14 +181,14 @@ gantt
 
 ### Documentação do Sistema Atual
 
-- [SYSTEM_OVERVIEW.md](file:///home/bruna/sisimagem/SYSTEM_OVERVIEW.md)
-- [reverse-engineering-report.md](file:///home/bruna/sisimagem/docs/reverse-engineering-report.md)
-- [guia-documentacao-sisimagem.md](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md)
+- [SYSTEM_OVERVIEW.md](../../SYSTEM_OVERVIEW.md)
+- [reverse-engineering-report.md](../reverse-engineering-report.md)
+- [guia-documentacao-sisimagem.md](../guia-documentacao-sisimagem.md)
 
 ### Análise de Gaps
 
-- [gaps-documentacao-migracao.md](file:///home/bruna/sisimagem/docs/gaps-documentacao-migracao.md)
-- [plano-acao-documentacao.md](file:///home/bruna/sisimagem/docs/plano-acao-documentacao.md)
+- [gaps-documentacao-migracao.md](../gaps-documentacao-migracao.md)
+- [plano-acao-documentacao.md](../plano-acao-documentacao.md)
 
 ### Documentação Técnica
 
@@ -212,8 +209,8 @@ gantt
 ## 📞 Suporte
 
 Para dúvidas sobre a migração:
-- **Documentação**: [docs/migracao/](file:///home/bruna/sisimagem/docs/migracao)
-- **Código**: [src/](file:///home/bruna/sisimagem/src)
+- **Documentação**: [docs/migracao/](./)
+- **Código**: [src/](../../src)
 
 ---
 
@@ -227,4 +224,4 @@ Para dúvidas sobre a migração:
 
 ---
 
-**Última atualização**: 2025-12-19
+**Última atualização**: 2026-01-02
