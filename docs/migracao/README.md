@@ -40,6 +40,31 @@ Esta pasta contém a documentação técnica necessária para migrar o SisImagem
 
 ---
 
+## 🎯 Decisões Chave
+
+### Stack Recomendada
+
+**Backend:**
+- Node.js 20 LTS
+- Express.js ou Fastify
+- TypeScript 5.x
+- Prisma ORM 5.x
+- PostgreSQL 15
+
+**Frontend:**
+- Next.js 14
+- TypeScript 5.x
+- Tailwind CSS + shadcn/ui
+- React Query + Zustand
+
+**Justificativa:**
+- 🚀 Performance superior
+- 🔒 Segurança moderna
+- 📱 Interface responsiva
+- 🌐 Sem vendor lock-in
+
+---
+
 ## 📅 Cronograma Geral
 
 ### Migração Completa: 36 semanas (~9 meses)
@@ -97,6 +122,7 @@ gantt
 1. **Revisar comparativos técnicos**
    - Revisar [comparativo técnico](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
    - Definir critérios de decisão
+   - Decisão: Node.js + PostgreSQL
 
 2. **Obter Acesso ao Oracle**
    - Credenciais de produção (read-only)
@@ -146,6 +172,9 @@ gantt
 ## 📖 Como uso esta documentação
 
 1. Leio o comparativo técnico enquanto a stack estiver em avaliação.
+## 📖 Como Uso Esta Documentação
+
+1. Leio o comparativo técnico antes de consolidar decisões de stack.
 2. Uso o plano de migração como checklist quando eu estiver executando a mudança do banco.
 3. Consulto o cronograma quando preciso revisar prazos e dependências.
 

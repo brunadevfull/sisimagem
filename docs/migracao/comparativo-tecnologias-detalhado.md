@@ -673,6 +673,8 @@ backend/
 | **TypeScript** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 | **Comunidade** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
 
+**🏆 RECOMENDAÇÃO: Next.js 14**
+
 ---
 
 ### 3.2 UI Libraries: Tailwind + shadcn/ui vs Material-UI vs Ant Design
@@ -689,6 +691,64 @@ backend/
 ---
 
 ## 📊 PARTE 4: RESUMO EM AVALIAÇÃO
+### 4.2 Justificativa Técnica Detalhada
+
+#### Por que PostgreSQL?
+
+1. **Features Modernas**
+   - JSONB nativo (documentos semi-estruturados)
+   - Full-text search nativo
+   - Arrays e tipos compostos
+   - Window functions
+   - CTEs recursivos
+
+2. **Performance Excelente**
+   - MVCC para concorrência
+   - Índices avançados (GiST, GIN, BRIN)
+   - Particionamento nativo
+   - Parallel queries
+
+3. **Ecossistema Rico**
+   - PostGIS para dados geoespaciais
+   - pg_trgm para busca fuzzy
+   - Extensões para tudo
+
+4. **Compatibilidade com ORMs**
+   - Prisma, TypeORM, Sequelize
+   - Migrations automáticas
+   - Type-safe queries
+
+---
+
+#### Por que Node.js + TypeScript?
+
+1. **Performance I/O**
+   - Event loop não-bloqueante
+   - Ideal para aplicações com muitas requisições
+   - Streaming eficiente de arquivos
+
+2. **Produtividade**
+   - JavaScript/TypeScript full-stack
+   - Hot reload rápido
+   - Ecosystem npm gigante
+
+3. **Type Safety**
+   - TypeScript elimina bugs em tempo de compilação
+   - Autocomplete excelente
+   - Refactoring seguro
+
+4. **Moderno e Ativo**
+   - Comunidade grande
+   - Atualizações frequentes
+
+---
+
+#### Por que Next.js?
+
+1. **SSR/SSG Nativo**
+   - SEO excelente
+   - Performance superior
+   - Flexibilidade de rendering
 
 Este comparativo serve como base para decisão. A stack ainda está em avaliação.
 
@@ -699,3 +759,107 @@ Este comparativo serve como base para decisão. A stack ainda está em avaliaç�
 - [ ] Validar impacto de migração de Oracle nas consultas críticas.
 - [ ] Definir estratégia de migração (incremental ou completa).
 - [ ] Registrar a decisão final e o motivo.
+3. **Ecossistema React**
+   - Maior comunidade frontend
+   - Mais componentes disponíveis
+
+---
+
+### 4.4 Cronograma de Migração Revisado
+
+#### Fase 0: Preparação (4 semanas)
+
+- ✅ Extração completa do schema Oracle
+- ✅ Análise de incompatibilidades
+- ✅ Setup de ambientes (dev, staging, prod)
+
+#### Fase 1: Migração de Banco (6 semanas)
+
+- ✅ Conversão de schema Oracle → PostgreSQL
+- ✅ Migração de dados (incremental)
+- ✅ Reescrita de queries críticas
+- ✅ Testes de performance
+- ✅ Validação de integridade
+
+#### Fase 2: Backend (10 semanas)
+
+- ✅ Setup Node.js + Express + TypeScript
+- ✅ Implementação de Prisma ORM
+- ✅ APIs de autenticação
+- ✅ APIs de documentos
+- ✅ APIs de usuários
+- ✅ Upload de arquivos
+- ✅ Testes unitários e integração
+
+#### Fase 3: Frontend (10 semanas)
+
+- ✅ Setup Next.js + TypeScript
+- ✅ Design system (Tailwind + shadcn/ui)
+- ✅ Telas de autenticação
+- ✅ Dashboard
+- ✅ Gestão de documentos
+- ✅ Gestão de usuários
+- ✅ Responsividade mobile
+
+#### Fase 4: Integração e Testes (4 semanas)
+
+- ✅ Integração frontend-backend
+- ✅ Testes E2E
+- ✅ Testes de carga
+- ✅ Testes de segurança
+- ✅ Correção de bugs
+
+#### Fase 5: Deploy e Go-Live (2 semanas)
+
+- ✅ Setup de produção
+- ✅ Migração final de dados
+- ✅ Cutover
+- ✅ Monitoramento
+- ✅ Suporte pós-go-live
+
+**TOTAL: 36 semanas (~9 meses)**
+
+---
+
+## 🎯 CONCLUSÃO E RECOMENDAÇÃO FINAL
+
+### Stack Recomendada
+
+**Backend:**
+- ✅ Node.js 20 LTS
+- ✅ Express.js 4.18 ou Fastify 4.x
+- ✅ TypeScript 5.x
+- ✅ Prisma ORM 5.x
+- ✅ PostgreSQL 15
+
+**Frontend:**
+- ✅ Next.js 14
+- ✅ TypeScript 5.x
+- ✅ Tailwind CSS + shadcn/ui
+- ✅ React Query + Zustand
+
+**Infraestrutura:**
+- ✅ Ubuntu Server 22.04 LTS
+- ✅ Nginx (reverse proxy)
+- ✅ PM2 (process manager)
+- ✅ Redis 7 (cache/sessions)
+
+### Benefícios Principais
+
+1. **🚀 Performance superior** (I/O e concorrência)
+2. **🔒 Segurança moderna** (sem SQL injection)
+3. **📱 Interface responsiva** e moderna
+4. **🛠️ Manutenibilidade** muito melhor
+5. **🌐 Sem vendor lock-in**
+6. **📈 Escalabilidade** horizontal fácil
+
+### Próximos Passos
+
+1. **Aprovar stack tecnológica**
+2. **Iniciar Fase 0** (preparação)
+3. **Executar migração** de banco (crítico!)
+4. **Desenvolvimento iterativo** com sprints de 2 semanas
+
+---
+
+**Esta migração para PostgreSQL + Node.js + Next.js oferece a melhor relação técnica, performance e modernidade para o SisImagem.**

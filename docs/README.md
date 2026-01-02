@@ -67,6 +67,13 @@ Se algum item acima ficar pendente, sigo o checklist abaixo.
 - [ ] Mapear tabelas TRIM tocadas por cada operação.
 - [ ] Registrar regras de senha (login + cadastro).
 - [ ] Documentar integrações externas e caminhos de arquivo.
+### Técnicos
+- ✅ **Performance superior** para I/O intensivo
+- ✅ **Segurança moderna** (elimina SQL Injection)
+- ✅ **Interface responsiva** e acessível
+- ✅ **Manutenibilidade** muito melhor
+- ✅ **Type safety** com TypeScript
+- ✅ **Escalabilidade** horizontal
 
 ---
 
@@ -95,6 +102,31 @@ Se algum item acima ficar pendente, sigo o checklist abaixo.
 1. Leio os documentos essenciais para entender o fluxo atual.
 2. Se faltar algo, sigo o checklist de levantamento.
 3. Enquanto a stack estiver em avaliação, mantenho decisões e critérios no checklist técnico.
+## 🎯 Próximos Passos
+
+### Imediatos
+1. ✅ Aprovar stack tecnológica (Node.js + PostgreSQL)
+2. ⏳ Obter acesso ao Oracle (read-only)
+3. ⏳ Iniciar análise detalhada do banco
+
+### Curto Prazo
+5. ⏳ Extração completa do schema Oracle
+6. ⏳ Setup de ambientes (dev, staging, prod)
+7. ⏳ Início da migração de banco
+
+### Médio Prazo
+8. ⏳ Desenvolvimento do backend
+9. ⏳ Desenvolvimento do frontend
+10. ⏳ Testes e validação
+
+---
+
+## 📖 Como Uso Esta Documentação
+
+1. Leio este README para manter a visão geral e o estado dos documentos.
+2. Consulto o [Guia de Documentação](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md) sempre que preciso mapear fluxos ou regras.
+3. Acesso o [Plano de Migração Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md) quando estou avaliando a migração do banco.
+4. Uso o [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md) apenas como referência técnica.
 
 ---
 
