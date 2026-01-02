@@ -169,8 +169,6 @@ gantt
 
 ---
 
-## 📖 Como uso esta documentação
-
 ## 📖 Como Uso Esta Documentação
 
 1. Leio o comparativo técnico antes de consolidar decisões de stack.
