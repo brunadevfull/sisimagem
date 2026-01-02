@@ -9,30 +9,25 @@ Sistema de Gestão de Documentos PAPEM-41/42 da PAPEM (instituição governament
 ```
 docs/
 ├── README.md (este arquivo)
-│
-├── 01-analise-sistema-atual/
-│   ├── visao-geral.md
-│   ├── arquitetura-atual.md
-│   └── analise-tecnica.md
-│
-├── 02-planejamento-migracao/
-│   ├── estrategia-migracao.md
-│   ├── comparativo-tecnologias.md
-│   └── cronograma.md
-│
-└── 03-migracao-banco-dados/
-    ├── oracle-para-postgresql.md
-    └── scripts-migracao/
+├── gaps-documentacao-migracao.md
+├── guia-documentacao-sisimagem.md
+├── plano-acao-documentacao.md
+├── recomendacoes-stack-arquitetura.md
+├── reverse-engineering-report.md
+└── migracao/
+    ├── README.md
+    ├── comparativo-tecnologias-detalhado.md
+    └── plano-migracao-oracle-postgresql.md
 ```
 
 ---
 
 ## ✅ Documentos Essenciais
 
-- [Visão Geral](file:///home/bruna/sisimagem/SYSTEM_OVERVIEW.md)
-- [Arquitetura Atual](file:///home/bruna/sisimagem/docs/reverse-engineering-report.md)
-- [Guia de Documentação](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md)
-- [Recomendações de Stack e Arquitetura](file:///home/bruna/sisimagem/docs/recomendacoes-stack-arquitetura.md)
+- [Visão Geral](../SYSTEM_OVERVIEW.md)
+- [Arquitetura Atual](./reverse-engineering-report.md)
+- [Guia de Documentação](./guia-documentacao-sisimagem.md)
+- [Recomendações de Stack e Arquitetura](./recomendacoes-stack-arquitetura.md)
 
 **Resumo rápido**: Sistema Java 8 com Servlets/JSP, Oracle/TRIM, jQuery 1.4.2.
 
@@ -40,10 +35,10 @@ docs/
 
 ## 📌 Documentação de Apoio (usar só quando necessário)
 
-- [Análise de Gaps](file:///home/bruna/sisimagem/docs/gaps-documentacao-migracao.md)
-- [Plano de Ação](file:///home/bruna/sisimagem/docs/plano-acao-documentacao.md)
-- [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
-- [Plano Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md)
+- [Análise de Gaps](./gaps-documentacao-migracao.md)
+- [Plano de Ação](./plano-acao-documentacao.md)
+- [Comparativo de Tecnologias](./migracao/comparativo-tecnologias-detalhado.md)
+- [Plano Oracle → PostgreSQL](./migracao/plano-migracao-oracle-postgresql.md)
 
 ---
 
@@ -124,9 +119,9 @@ Se algum item acima ficar pendente, sigo o checklist abaixo.
 ## 📖 Como Uso Esta Documentação
 
 1. Leio este README para manter a visão geral e o estado dos documentos.
-2. Consulto o [Guia de Documentação](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md) sempre que preciso mapear fluxos ou regras.
-3. Acesso o [Plano de Migração Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md) quando estou avaliando a migração do banco.
-4. Uso o [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md) apenas como referência técnica.
+2. Consulto o [Guia de Documentação](./guia-documentacao-sisimagem.md) sempre que preciso mapear fluxos ou regras.
+3. Acesso o [Plano de Migração Oracle → PostgreSQL](./migracao/plano-migracao-oracle-postgresql.md) quando estou avaliando a migração do banco.
+4. Uso o [Comparativo de Tecnologias](./migracao/comparativo-tecnologias-detalhado.md) apenas como referência técnica.
 
 ---
 
@@ -154,4 +149,4 @@ Para dúvidas sobre a documentação:
 
 ---
 
-**Última atualização**: 2025-12-20
+**Última atualização**: 2026-01-02
