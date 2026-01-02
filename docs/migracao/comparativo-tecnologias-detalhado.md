@@ -498,8 +498,6 @@ pgbench -c 50 -j 4 -t 1000 sisimagem
 | **Escalabilidade** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 15% |
 | **Type safety** | ⭐⭐⭐⭐ (TS) | ⭐⭐⭐ (8.0+) | ⭐⭐⭐⭐⭐ | 10% |
 
-**🏆 VENCEDOR: Node.js + TypeScript (4.3/5.0)**
-
 ---
 
 ### 2.2 ORMs: Prisma vs TypeORM vs Sequelize
@@ -512,8 +510,6 @@ pgbench -c 50 -j 4 -t 1000 sisimagem
 | **Documentação** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
 | **Suporte PostgreSQL** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 | **Developer Experience** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-
-**🏆 RECOMENDAÇÃO: Prisma**
 
 **Exemplo de Schema Prisma:**
 ```prisma
@@ -692,48 +688,9 @@ backend/
 | **Bundle size** | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ |
 | **Dark mode** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
 
-**🏆 RECOMENDAÇÃO: Tailwind CSS + shadcn/ui**
-
 ---
 
-## 📊 PARTE 4: COMPARATIVO FINAL E RECOMENDAÇÃO
-
-### 4.1 Stack Recomendada (Detalhada)
-
-```mermaid
-graph TB
-    subgraph "Frontend"
-        A[Next.js 14 + TypeScript]
-        B[Tailwind CSS + shadcn/ui]
-        C[React Query]
-        D[Zustand]
-    end
-    
-    subgraph "Backend"
-        E[Node.js 20 + Express]
-        F[TypeScript]
-        G[Prisma ORM]
-    end
-    
-    subgraph "Database"
-        H[PostgreSQL 15]
-        I[Redis 7]
-    end
-    
-    subgraph "Storage"
-        J[Local Filesystem]
-        K[S3-compatible opcional]
-    end
-    
-    A --> E
-    E --> G
-    G --> H
-    E --> I
-    E --> J
-```
-
----
-
+## 📊 PARTE 4: RESUMO EM AVALIAÇÃO
 ### 4.2 Justificativa Técnica Detalhada
 
 #### Por que PostgreSQL?
@@ -793,12 +750,15 @@ graph TB
    - Performance superior
    - Flexibilidade de rendering
 
-2. **Developer Experience**
-   - File-based routing
-   - API routes integradas
-   - Image optimization automática
-   - Code splitting automático
+Este comparativo serve como base para decisão. A stack ainda está em avaliação.
 
+### Checklist de decisão técnica
+
+- [ ] Revisar critérios (segurança, manutenção, curva de aprendizado, integração).
+- [ ] Comparar backend, frontend e banco com base nos critérios.
+- [ ] Validar impacto de migração de Oracle nas consultas críticas.
+- [ ] Definir estratégia de migração (incremental ou completa).
+- [ ] Registrar a decisão final e o motivo.
 3. **Ecossistema React**
    - Maior comunidade frontend
    - Mais componentes disponíveis

@@ -119,8 +119,9 @@ gantt
 
 ### Imediatos (Semana 1-2)
 
-1. **Aprovar Stack Tecnológica**
+1. **Revisar comparativos técnicos**
    - Revisar [comparativo técnico](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
+   - Definir critérios de decisão
    - Decisão: Node.js + PostgreSQL
 
 2. **Obter Acesso ao Oracle**
@@ -158,6 +159,19 @@ gantt
 
 ---
 
+## ✅ Checklist de decisões de migração
+
+- [ ] Definir critérios de comparação (segurança, manutenção, custo operacional, equipe disponível).
+- [ ] Comparar opções de backend, frontend e banco.
+- [ ] Validar compatibilidade de queries Oracle → alternativa escolhida.
+- [ ] Definir estratégia de migração (incremental ou completa).
+- [ ] Documentar decisões e pendências.
+
+---
+
+## 📖 Como uso esta documentação
+
+1. Leio o comparativo técnico enquanto a stack estiver em avaliação.
 ## 📖 Como Uso Esta Documentação
 
 1. Leio o comparativo técnico antes de consolidar decisões de stack.

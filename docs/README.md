@@ -27,67 +27,46 @@ docs/
 
 ---
 
-## 🎯 Documentos por Categoria
+## ✅ Documentos Essenciais
 
-### 1️⃣ Análise do Sistema Atual
+- [Visão Geral](file:///home/bruna/sisimagem/SYSTEM_OVERVIEW.md)
+- [Arquitetura Atual](file:///home/bruna/sisimagem/docs/reverse-engineering-report.md)
+- [Guia de Documentação](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md)
+- [Recomendações de Stack e Arquitetura](file:///home/bruna/sisimagem/docs/recomendacoes-stack-arquitetura.md)
 
-| Documento | Descrição | Status |
-|-----------|-----------|--------|
-| [Visão Geral](file:///home/bruna/sisimagem/SYSTEM_OVERVIEW.md) | Visão geral do sistema, stack e módulos | ✅ |
-| [Arquitetura Atual](file:///home/bruna/sisimagem/docs/reverse-engineering-report.md) | Análise de engenharia reversa | ✅ |
-| [Guia de Documentação](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md) | Guia para documentação e reengenharia | ✅ |
-
-**Resumo**: Sistema Java 8 com Servlets/JSP, Oracle/TRIM, jQuery 1.4.2
+**Resumo rápido**: Sistema Java 8 com Servlets/JSP, Oracle/TRIM, jQuery 1.4.2.
 
 ---
 
-### 2️⃣ Planejamento de Migração
+## 📌 Documentação de Apoio (usar só quando necessário)
 
-| Documento | Descrição | Status |
-|-----------|-----------|--------|
-| [Análise de Gaps](file:///home/bruna/sisimagem/docs/gaps-documentacao-migracao.md) | Lacunas na documentação atual | ✅ |
-| [Plano de Ação](file:///home/bruna/sisimagem/docs/plano-acao-documentacao.md) | Plano para completar documentação | ✅ |
-| [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md) | Análise técnica de opções | ✅ |
-
-**Decisão**: Node.js + TypeScript + PostgreSQL + Next.js
+- [Análise de Gaps](file:///home/bruna/sisimagem/docs/gaps-documentacao-migracao.md)
+- [Plano de Ação](file:///home/bruna/sisimagem/docs/plano-acao-documentacao.md)
+- [Comparativo de Tecnologias](file:///home/bruna/sisimagem/docs/migracao/comparativo-tecnologias-detalhado.md)
+- [Plano Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md)
 
 ---
 
-### 3️⃣ Migração de Banco de Dados
+## ✅ Checklist: A documentação atual está suficiente?
 
-| Documento | Descrição | Status |
-|-----------|-----------|--------|
-| [Plano Oracle → PostgreSQL](file:///home/bruna/sisimagem/docs/migracao/plano-migracao-oracle-postgresql.md) | Plano detalhado de migração | ✅ |
+- [ ] Fluxos principais estão descritos (login, pesquisa, inclusão, anexos).
+- [ ] Tabelas TRIM citadas nas operações estão mapeadas.
+- [ ] Regras de validação e bloqueio estão registradas.
+- [ ] Campos obrigatórios por tipo de documento estão descritos.
+- [ ] Integrações externas (scanner, arquivos, TRIM) estão claras.
 
-**Crítico**: Migração de Oracle para PostgreSQL é o componente mais complexo
-
----
-
-## 🚀 Stack Tecnológica Recomendada
-
-### Backend
-- **Runtime**: Node.js 20 LTS
-- **Framework**: Express.js ou Fastify
-- **Linguagem**: TypeScript 5.x
-- **ORM**: Prisma 5.x
-- **Banco de Dados**: PostgreSQL 15
-
-### Frontend
-- **Framework**: Next.js 14
-- **Linguagem**: TypeScript 5.x
-- **UI**: Tailwind CSS + shadcn/ui
-- **Estado**: React Query + Zustand
-
-### Infraestrutura
-- **SO**: Ubuntu Server 22.04 LTS
-- **Proxy**: Nginx
-- **Process Manager**: PM2
-- **Cache**: Redis 7
+Se algum item acima ficar pendente, sigo o checklist abaixo.
 
 ---
 
-## 📊 Benefícios da Migração
+## 🧭 Checklist de levantamento (se faltar informação)
 
+- [ ] Revisar `ServletControlador.init()` e mapear `cmd` → `Operacao`.
+- [ ] Listar campos e validações de cada JSP usada no fluxo principal.
+- [ ] Extrair regras de negócio de `DAOTrim` e `Operacao*`.
+- [ ] Mapear tabelas TRIM tocadas por cada operação.
+- [ ] Registrar regras de senha (login + cadastro).
+- [ ] Documentar integrações externas e caminhos de arquivo.
 ### Técnicos
 - ✅ **Performance superior** para I/O intensivo
 - ✅ **Segurança moderna** (elimina SQL Injection)
@@ -98,54 +77,31 @@ docs/
 
 ---
 
-## 📅 Cronograma Geral
+## 🧱 Checklist de decisões técnicas (stack ainda em avaliação)
 
-### Fase 1: Preparação (4 semanas)
-- Análise completa do sistema atual
-- Extração do schema Oracle
-- Setup de ambientes
-
-### Fase 2: Migração de Banco (6 semanas) ⚠️ CRÍTICO
-- Conversão Oracle → PostgreSQL
-- Migração de dados
-- Validação e testes
-
-### Fase 3: Backend (10 semanas)
-- APIs REST com Node.js
-- Autenticação e autorização
-- Lógica de negócio
-
-### Fase 4: Frontend (10 semanas)
-- Interface moderna com Next.js
-- Responsividade mobile
-- UX aprimorada
-
-### Fase 5: Integração e Testes (4 semanas)
-- Testes E2E
-- Testes de carga
-- Correção de bugs
-
-### Fase 6: Deploy (2 semanas)
-- Configuração de produção
-- Migração final
-- Go-live
-
-**Total: 36 semanas (~9 meses)**
+- [ ] Definir critérios (segurança, manutenção, curva de aprendizado, integrações).
+- [ ] Comparar opções de backend, frontend e banco com base nos critérios.
+- [ ] Validar impacto de migração de Oracle → outro banco (queries e dados).
+- [ ] Decidir se reimplementação será incremental ou big-bang.
+- [ ] Registrar decisão final e justificativas.
 
 ---
 
-## ⚠️ Riscos Principais
+## 🧩 Boas práticas para escolher arquitetura
 
-| Risco | Probabilidade | Impacto | Mitigação |
-|-------|---------------|---------|-----------|
-| Perda de dados na migração | Baixa | Crítico | Backup completo + validação rigorosa |
-| Incompatibilidades Oracle/PostgreSQL | Alta | Alto | Testes extensivos + conversão cuidadosa |
-| Performance inferior | Média | Alto | Tuning + índices + cache |
-| Downtime prolongado | Média | Alto | Migração incremental + rollback |
-| Bugs em produção | Média | Alto | Testes E2E + monitoramento |
+- [ ] Manter o front controller (ou equivalente) para preservar o fluxo atual.
+- [ ] Separar camada de domínio, persistência e transporte (controllers/handlers).
+- [ ] Tratar autenticação e autorização como módulo isolado.
+- [ ] Preferir contratos claros (DTOs) entre camadas.
+- [ ] Priorizar migração do banco com testes de dados repetíveis.
 
 ---
 
+## 📖 Como uso esta documentação
+
+1. Leio os documentos essenciais para entender o fluxo atual.
+2. Se faltar algo, sigo o checklist de levantamento.
+3. Enquanto a stack estiver em avaliação, mantenho decisões e critérios no checklist técnico.
 ## 🎯 Próximos Passos
 
 ### Imediatos
