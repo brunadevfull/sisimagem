@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-Completar a documentação do SisImagem para viabilizar uma migração/reimplementação com tecnologias modernas, preenchendo as lacunas identificadas em [gaps-documentacao-migracao.md](file:///home/bruna/sisimagem/docs/gaps-documentacao-migracao.md).
+Completar a documentação do SisImagem para viabilizar uma migração/reimplementação com tecnologias modernas, preenchendo as lacunas identificadas em [gaps-documentacao-migracao.md](../01-analise-sistema-atual/gaps-documentacao-migracao.md).
 
 ---
 
@@ -570,10 +570,15 @@ LOG_PATH=/var/log/sisimagem/
 sisimagem/
 ├── docs/
 │   ├── README.md (índice geral)
-│   ├── gaps-documentacao-migracao.md
-│   ├── plano-acao-documentacao.md (este arquivo)
-│   ├── reverse-engineering-report.md (existente)
-│   ├── guia-documentacao-sisimagem.md (existente)
+│   ├── 01-analise-sistema-atual/
+│   │   ├── gaps-documentacao-migracao.md
+│   │   ├── reverse-engineering-report.md (existente)
+│   │   └── guia-documentacao-sisimagem.md (existente)
+│   ├── 02-planejamento-migracao/
+│   │   └── plano-acao-documentacao.md (este arquivo)
+│   ├── 03-migracao-banco-dados/
+│   │   ├── README.md
+│   │   └── plano-migracao-oracle-postgresql.md
 │   │
 │   ├── database/
 │   │   ├── schema-completo.sql
@@ -645,7 +650,7 @@ sisimagem/
 │   │   ├── guia-backup-restore.md
 │   │   └── troubleshooting.md
 │   │
-│   └── migracao/
+│   └── 03-migracao-banco-dados/
 │       ├── estrategia-migracao.md
 │       ├── mapeamento-tecnologico.md
 │       ├── plano-migracao-dados.md
