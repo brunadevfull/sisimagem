@@ -738,8 +738,8 @@ Priorize a **Fase 1** (documentação crítica) antes de iniciar qualquer migra�
 
 ## 10. Referências
 
-- [reverse-engineering-report.md](file:///home/bruna/sisimagem/docs/reverse-engineering-report.md)
-- [guia-documentacao-sisimagem.md](file:///home/bruna/sisimagem/docs/guia-documentacao-sisimagem.md)
-- [SYSTEM_OVERVIEW.md](file:///home/bruna/sisimagem/SYSTEM_OVERVIEW.md)
-- Código-fonte em [src/main/java](file:///home/bruna/sisimagem/src/main/java)
-- Views em [src/main/webapp/views](file:///home/bruna/sisimagem/src/main/webapp/views)
+- [reverse-engineering-report.md](./reverse-engineering-report.md)
+- [guia-documentacao-sisimagem.md](./guia-documentacao-sisimagem.md)
+- [SYSTEM_OVERVIEW.md](../../SYSTEM_OVERVIEW.md)
+- Código-fonte em [src/main/java](../../src/main/java)
+- Views em [src/main/webapp/views](../../src/main/webapp/views)

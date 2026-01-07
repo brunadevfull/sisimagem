@@ -8,7 +8,7 @@ Esta pasta contém a documentação técnica necessária para migrar o SisImagem
 
 ## 📚 Documentos Disponíveis
 
-### 1. [Comparativo Técnico Detalhado](./comparativo-tecnologias-detalhado.md)
+### 1. [Comparativo Técnico Detalhado](../02-planejamento-migracao/comparativo-tecnologias-detalhado.md)
 
 **Descrição**: Análise técnica aprofundada comparando tecnologias para migração.
 
@@ -120,7 +120,7 @@ gantt
 ### Imediatos (Semana 1-2)
 
 1. **Revisar comparativos técnicos**
-   - Revisar [comparativo técnico](./comparativo-tecnologias-detalhado.md)
+   - Revisar [comparativo técnico](../02-planejamento-migracao/comparativo-tecnologias-detalhado.md)
    - Definir critérios de decisão
    - Decisão: Node.js + PostgreSQL
 
@@ -182,13 +182,13 @@ gantt
 ### Documentação do Sistema Atual
 
 - [SYSTEM_OVERVIEW.md](../../SYSTEM_OVERVIEW.md)
-- [reverse-engineering-report.md](../reverse-engineering-report.md)
-- [guia-documentacao-sisimagem.md](../guia-documentacao-sisimagem.md)
+- [reverse-engineering-report.md](../01-analise-sistema-atual/reverse-engineering-report.md)
+- [guia-documentacao-sisimagem.md](../01-analise-sistema-atual/guia-documentacao-sisimagem.md)
 
 ### Análise de Gaps
 
-- [gaps-documentacao-migracao.md](../gaps-documentacao-migracao.md)
-- [plano-acao-documentacao.md](../plano-acao-documentacao.md)
+- [gaps-documentacao-migracao.md](../01-analise-sistema-atual/gaps-documentacao-migracao.md)
+- [plano-acao-documentacao.md](../02-planejamento-migracao/plano-acao-documentacao.md)
 
 ### Documentação Técnica
 
@@ -209,7 +209,7 @@ gantt
 ## 📞 Suporte
 
 Para dúvidas sobre a migração:
-- **Documentação**: [docs/migracao/](./)
+- **Documentação**: [docs/03-migracao-banco-dados/](./)
 - **Código**: [src/](../../src)
 
 ---
