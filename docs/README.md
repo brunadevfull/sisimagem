@@ -14,6 +14,7 @@ docs/
 │   ├── guia-documentacao-sisimagem.md
 │   └── reverse-engineering-report.md
 ├── 02-planejamento-migracao/
+│   ├── checkin-requisitos-upgrade.md
 │   ├── comparativo-tecnologias-detalhado.md
 │   ├── plano-acao-documentacao.md
 │   └── recomendacoes-stack-arquitetura.md
@@ -30,6 +31,7 @@ docs/
 - [Arquitetura Atual](./01-analise-sistema-atual/reverse-engineering-report.md)
 - [Guia de Documentação](./01-analise-sistema-atual/guia-documentacao-sisimagem.md)
 - [Recomendações de Stack e Arquitetura](./02-planejamento-migracao/recomendacoes-stack-arquitetura.md)
+- [Check-in de Requisitos para Upgrade](./02-planejamento-migracao/checkin-requisitos-upgrade.md)
 
 **Resumo rápido**: Sistema Java 8 com Servlets/JSP, Oracle/TRIM, jQuery 1.4.2.
 
