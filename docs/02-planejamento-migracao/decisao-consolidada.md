@@ -203,7 +203,7 @@ Mantém o esqueleto de fases dos documentos anteriores (`plano-migracao-oracle-p
 | **0 — Destravar** (agora) | Rodar script da seção 4 contra homologação | Nenhum — acionável imediatamente |
 | **1 — Schema e setup Postgres** | Fechar DDL da seção 3 com dados reais da Fase 0; setup PostgreSQL 15 (`pg_trgm`, `unaccent` para busca) | Fase 0 |
 | **2 — Backend** | Laravel 11 + Eloquent, portar regras de `DAOTrim`/`Operacao*` (autenticação, geração de numeração via `contadores_numeracao`, upload) | Fase 1 |
-| **3 — Frontend** | A definir (Blade/Livewire dentro do próprio Laravel vs. SPA separada) — **decisão em aberto, não fechada nesta rodada** | Fase 2 em paralelo |
+| **3 — Frontend** | Blade + Livewire dentro do próprio Laravel (confirmado) — sem API/SPA separada, sem overhead de token/CORS para o time atual (1 programadora + 2 apoio) | Fase 2 em paralelo |
 | **4 — Migração de dados** | Migração completa do histórico para o Postgres novo (corte definitivo, sem manter o TRIM em paralelo); escolha de downtime completo vs. incremental conforme volume (Fase 0) | Fase 1 |
 | **5 — Testes e go-live** | Checklist funcional, carga, segurança (queries parametrizadas, reset de senha); desligar acesso do SisImagem ao TRIM | Fases 2-4 |
 
