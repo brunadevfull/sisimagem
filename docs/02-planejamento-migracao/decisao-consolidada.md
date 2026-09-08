@@ -19,14 +19,9 @@ O planejamento anterior travou porque três decisões de fundo nunca foram fecha
 | **Stack de aplicação** | **PHP 8.3 + Laravel 11** | Nenhum documento anterior cobria PHP. Laravel é o framework dominante no ecossistema PHP para este porte: Eloquent ORM, sistema de migrations nativo, Auth scaffolding, bom suporte a PostgreSQL. **A confirmar**: se há padrão institucional de framework PHP diferente (Symfony, etc.), ajustar aqui antes de iniciar o backend. |
 | **Escopo** | **Reescrita completa** | Novo backend (PHP/Laravel), novo frontend, novo banco (PostgreSQL) — substitui Java/JSP/Oracle-TRIM por completo. Não é troca de driver, é sistema novo. |
 
-### Pendência institucional restante (não bloqueia o início do trabalho técnico)
+### Corte com o TRIM: sem dependência residual
 
-Abandonar o TRIM do lado do SisImagem é sempre executável tecnicamente — é passar a ter um banco Postgres próprio e parar de ler/escrever no schema TRIM. O que ainda precisa de checagem institucional (DBA/arquitetura da Marinha/PAPEM) é mais estreito:
-
-1. Os documentos do SisImagem precisam continuar visíveis dentro de um TRIM corporativo por exigência de algum outro processo ou sistema (auditoria, retenção documental legal)?
-2. O que fazer com o histórico já gravado no TRIM: migrar tudo para o Postgres novo, ou manter o TRIM antigo como consulta somente-leitura por um período de transição?
-
-Essas respostas definem a **estratégia de migração de dados** (seção 5), não a viabilidade de começar a construir o schema e o backend novos — isso pode avançar em paralelo.
+Decisão fechada, sem pendência institucional: o SisImagem não precisa manter os documentos visíveis num TRIM corporativo, e o histórico será **migrado por completo** para o Postgres novo — sem manter o TRIM antigo como consulta paralela. Corte limpo: uma vez migrados os dados (seção 5, Fase 4), o SisImagem para de ler/escrever no schema TRIM definitivamente.
 
 ---
 
@@ -205,12 +200,12 @@ Mantém o esqueleto de fases dos documentos anteriores (`plano-migracao-oracle-p
 
 | Fase | Conteúdo | Pré-requisito |
 |---|---|---|
-| **0 — Destravar** (agora) | Rodar script da seção 4 contra homologação; levar a pergunta institucional restrita (seção 2) para DBA/arquitetura | Nenhum — acionável imediatamente |
+| **0 — Destravar** (agora) | Rodar script da seção 4 contra homologação | Nenhum — acionável imediatamente |
 | **1 — Schema e setup Postgres** | Fechar DDL da seção 3 com dados reais da Fase 0; setup PostgreSQL 15 (`pg_trgm`, `unaccent` para busca) | Fase 0 |
 | **2 — Backend** | Laravel 11 + Eloquent, portar regras de `DAOTrim`/`Operacao*` (autenticação, geração de numeração via `contadores_numeracao`, upload) | Fase 1 |
 | **3 — Frontend** | A definir (Blade/Livewire dentro do próprio Laravel vs. SPA separada) — **decisão em aberto, não fechada nesta rodada** | Fase 2 em paralelo |
-| **4 — Migração de dados** | Escolha completa vs. incremental conforme volume (Fase 0); scripts de carga Postgres | Fase 1, resposta institucional da seção 2 |
-| **5 — Testes e go-live** | Checklist funcional, carga, segurança (queries parametrizadas, reset de senha) | Fases 2-4 |
+| **4 — Migração de dados** | Migração completa do histórico para o Postgres novo (corte definitivo, sem manter o TRIM em paralelo); escolha de downtime completo vs. incremental conforme volume (Fase 0) | Fase 1 |
+| **5 — Testes e go-live** | Checklist funcional, carga, segurança (queries parametrizadas, reset de senha); desligar acesso do SisImagem ao TRIM | Fases 2-4 |
 
 ---
 
