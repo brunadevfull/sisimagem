@@ -16,7 +16,7 @@ O planejamento anterior travou porque três decisões de fundo nunca foram fecha
 |---|---|---|
 | **Destino do TRIM** | **Abandonar** | `DAOTrim.java` já ignora completamente a camada de negócio do TRIM — faz SQL cru direto nas tabelas internas (`TSRECORD`, `TSLOCATION` etc.), sem usar workflow, retenção ou auditoria nativos do produto. O custo de abandoná-lo é baixo porque ele já não é aproveitado como produto, só como schema. TRIM não certifica PostgreSQL como backend — mantê-lo inviabilizaria tecnicamente o objetivo. |
 | **Acesso ao Oracle** | Disponível (homologação) | Extração real do schema pode começar imediatamente (script na seção 4). Deixa de ser bloqueador teórico. |
-| **Stack de aplicação** | **PHP 8.3 + Laravel 11** | Nenhum documento anterior cobria PHP. Laravel é o framework dominante no ecossistema PHP para este porte: Eloquent ORM, sistema de migrations nativo, Auth scaffolding, bom suporte a PostgreSQL. **A confirmar**: se há padrão institucional de framework PHP diferente (Symfony, etc.), ajustar aqui antes de iniciar o backend. |
+| **Stack de aplicação** | **PHP 8.3 + Laravel 11** (confirmado) | Nenhum documento anterior cobria PHP. Laravel é o framework dominante no ecossistema PHP para este porte: Eloquent ORM, sistema de migrations nativo, Auth scaffolding, bom suporte a PostgreSQL. |
 | **Escopo** | **Reescrita completa** | Novo backend (PHP/Laravel), novo frontend, novo banco (PostgreSQL) — substitui Java/JSP/Oracle-TRIM por completo. Não é troca de driver, é sistema novo. |
 
 ### Corte com o TRIM: sem dependência residual
