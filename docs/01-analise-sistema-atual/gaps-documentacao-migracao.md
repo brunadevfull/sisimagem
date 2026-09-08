@@ -419,6 +419,8 @@ login.jsp
 
 **Mapeamento Tecnológico**:
 
+> **Superado por [decisao-consolidada.md](../02-planejamento-migracao/decisao-consolidada.md)**: a tabela abaixo lista Java/Spring como alternativa em aberto; a decisão fechada é PHP 8.3 + Laravel 11 + PostgreSQL 15, com abandono do TRIM (não "Oracle moderno").
+
 | Tecnologia Atual | Tecnologia Alvo Sugerida | Justificativa |
 |------------------|--------------------------|---------------|
 | Java 8 + Servlets/JSP | Java 17+ Spring Boot | Modernização, produtividade |

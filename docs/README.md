@@ -14,6 +14,7 @@ docs/
 │   ├── guia-documentacao-sisimagem.md
 │   └── reverse-engineering-report.md
 ├── 02-planejamento-migracao/
+│   ├── decisao-consolidada.md (fonte de verdade atual: stack, schema, roadmap)
 │   ├── comparativo-tecnologias-detalhado.md
 │   ├── plano-acao-documentacao.md
 │   └── recomendacoes-stack-arquitetura.md
@@ -29,7 +30,7 @@ docs/
 - [Visão Geral](../SYSTEM_OVERVIEW.md)
 - [Arquitetura Atual](./01-analise-sistema-atual/reverse-engineering-report.md)
 - [Guia de Documentação](./01-analise-sistema-atual/guia-documentacao-sisimagem.md)
-- [Recomendações de Stack e Arquitetura](./02-planejamento-migracao/recomendacoes-stack-arquitetura.md)
+- [Decisão Consolidada: Migração e Reescrita](./02-planejamento-migracao/decisao-consolidada.md) — stack, schema PostgreSQL e roadmap fechados
 
 **Resumo rápido**: Sistema Java 8 com Servlets/JSP, Oracle/TRIM, jQuery 1.4.2.
 

@@ -1,5 +1,7 @@
 # Plano Detalhado: Migração Oracle → PostgreSQL
 
+> **Superado por [decisao-consolidada.md](../02-planejamento-migracao/decisao-consolidada.md)**: os exemplos de schema (`CREATE TABLE TSRECORD` etc.) abaixo são especulativos e não batem com as colunas reais usadas pela aplicação — usar o DDL do documento consolidado. O checklist operacional de fases (backup, `pgbench`, monitoramento) continua válido como referência.
+
 ## 🎯 Objetivo
 
 Migrar o banco de dados do SisImagem de **Oracle SQL (TRIM)** para **PostgreSQL 15** com **zero perda de dados** e **mínimo downtime**. Este plano foi escrito por mim para servir como roteiro de execução e checklist.

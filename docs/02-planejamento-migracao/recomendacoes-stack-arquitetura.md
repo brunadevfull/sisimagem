@@ -1,5 +1,7 @@
 # Recomendações de Stack e Arquitetura (rascunho)
 
+> **Superado por [decisao-consolidada.md](./decisao-consolidada.md)**: a stack foi fechada em PHP 8.3 + Laravel 11 + PostgreSQL 15 (não Node/TS/Prisma como abaixo). Este documento mantém valor como registro histórico das alternativas comparadas, mas não reflete a decisão atual.
+
 Escrevi este documento para concentrar as recomendações de stack, arquitetura e boas práticas enquanto a decisão final não é tomada. Vou ajustando conforme os comparativos avançarem.
 
 ---
