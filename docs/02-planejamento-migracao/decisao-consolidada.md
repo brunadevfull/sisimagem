@@ -27,7 +27,14 @@ Decisão fechada, sem pendência institucional: o SisImagem não precisa manter 
 
 ## 3. Schema PostgreSQL proposto
 
-Desenhado a partir do inventário real de uso em `src/main/java/model/DAOTrim.java` (SQL efetivamente executado pela aplicação) — não dos exemplos especulativos dos planos anteriores, que não batiam com as colunas reais.
+Desenhado a partir do inventário real de uso em `src/main/java/model/DAOTrim.java` (SQL efetivamente executado pela aplicação) e **confirmado contra o DDL real do Oracle/TRIM de homologação** (`DBMS_METADATA.GET_DDL`, obtido em 2026-09-08) — não mais especulativo.
+
+O dump real confirma duas coisas importantes:
+
+1. **As colunas reconstruídas a partir do código batem exatamente com o schema real**: `TSRECORD` tem de fato `RECORDID`, `TITLE`, `RCSTRUCTUREDTITLE`, `FULLRECORDID`, `RCCONTAINERURI`, `REGDATETIME`, `CREATIONDATETIME`, `RCRECTYPEURI`, `RCSCHEDULEURI`; `TSLOCATION` tem `LCNAME`, `LCIDNUMBER`, `LCJURGROUP`, `LCVALIDFROM`, `LCVALIDTO`; `TSRECELEC` tem `RESID`, `REFILENAME`, `REEXTENSION`, `RENAMEURI`, `REMODIFIEDDATETIME`; `TSRECLOC` tem `RLRECURI`, `RLLOCURI`, `RLDESCRIPTION`, `RLFROMDATETIME`, `RLTODATETIME`. Os relacionamentos inferidos por JOIN no `DAOTrim.java` (seção anterior) são FKs reais no Oracle: `FK_RCCONTAINERURI` (auto-relação em `TSRECORD`), `FK_RENAMEURI` (`TSRECELEC` → `TSLOCATION`), `FK_RLRECURI`/`FK_RLLOCURI` (`TSRECLOC` → `TSRECORD`/`TSLOCATION`), `FK_EVFIELDURI` (`TSEXFIELDV` → `TSEXFIELD`), `FK_LCJURGROUP` (`TSLOCATION` → `TSJURGROUP`).
+2. **O dump inteiro tem mais de 100 tabelas** (agenda/reuniões, workflow, thesaurus, classificação de segurança multinível, código de barras, gestão de espaço físico de arquivo morto) — o SisImagem usa menos de 10 delas. Isso reforça a decisão da seção 2: o TRIM é um produto de gestão de registros corporativo completo, e abandoná-lo não perde funcionalidade real usada pelo SisImagem hoje.
+
+Campos `NOT NULL`/nulináveis relevantes confirmados no Oracle real (informam os `NOT NULL` do DDL Postgres abaixo): em `TSRECORD`, apenas `URI`, `RECORDID`, `TITLE`, `RCSCHEDULEURI`, `FULLRECORDID`, `RCCONTAINERURI`, `RCSTRUCTUREDTITLE`, `REGDATETIME`, `CREATIONDATETIME` são obrigatórios — `RCRECTYPEURI` é nulável no schema real (usado sempre nos INSERTs do `DAOTrim.java`, mas o banco não obriga). Em `TSLOCATION`, só `URI` e `LCNAME` são obrigatórios — `LCIDNUMBER` (hash de senha) e `LCJURGROUP` são nuláveis (compatível com "locations" que não são usuários de login). Em `TSRECELEC`, só `URI`, `RENAMEURI` e `REMODIFIEDDATETIME` são obrigatórios — `RESID`/`REFILENAME`/`REEXTENSION` são nuláveis no Oracle real.
 
 ### 3.1 Decisões de modelagem (corrigindo problemas identificados no schema atual)
 
@@ -134,53 +141,25 @@ CREATE TABLE tramitacoes (
 );
 ```
 
-### 3.3 O que este DDL não resolve ainda
+### 3.3 O que ainda falta (schema já confirmado, dados ainda não)
 
-- Nomes/tipos exatos dos ~15 campos customizados de `documentos` — vieram parcialmente do glossário em `gaps-documentacao-migracao.md`, mas precisam ser confirmados contra `TSEXFIELD` real (query na seção 4.2).
+- Nomes/tipos exatos dos ~15 campos customizados de `documentos` — o DDL confirma a estrutura de `TSEXFIELD` (catálogo de campos), mas não os *valores* de `EXFIELDNAME` cadastrados nesta instância. Falta rodar a query da seção 4.1.
 - Se `tramitacoes` é de fato um conceito de negócio usado ativamente (múltiplas tramitações por documento) ou só um registro de auditoria de criação — o código só mostra um insert por documento, nunca update/consulta de histórico de tramitação.
+- Volume de dados real (linhas por tabela) — decide completo vs. incremental na Fase 4. Falta rodar a query da seção 4.2.
 
 ---
 
-## 4. Script de extração real do Oracle de homologação
+## 4. Queries restantes contra o Oracle de homologação
 
-Agora executável (acesso disponível). Roda contra o schema do TRIM em homologação para confirmar/corrigir o DDL da seção 3 antes de codar a migração de dados.
+O DDL estrutural (schema, tipos, constraints, FKs) **já foi obtido** — a seção 3 acima já reflete o schema real. Faltam apenas duas consultas de dados, mais simples que extrair DDL:
 
-### 4.1 Estrutura das 7 tabelas confirmadas em uso
-
-```sql
--- Rodar via sqlplus ou qualquer client Oracle, salvando cada resultado
-SELECT table_name, num_rows, tablespace_name
-FROM user_tables
-WHERE table_name IN ('TSRECORD','TSEXFIELD','TSEXFIELDV','TSLOCATION','TSJURGROUP','TSRECLOC','TSRECELEC','TSRECTYPE')
-ORDER BY table_name;
-
-SELECT table_name, column_name, data_type, data_length, data_precision, data_scale, nullable, column_id
-FROM user_tab_columns
-WHERE table_name IN ('TSRECORD','TSEXFIELD','TSEXFIELDV','TSLOCATION','TSJURGROUP','TSRECLOC','TSRECELEC','TSRECTYPE')
-ORDER BY table_name, column_id;
-
-SELECT constraint_name, constraint_type, table_name, r_constraint_name, search_condition
-FROM user_constraints
-WHERE table_name IN ('TSRECORD','TSEXFIELD','TSEXFIELDV','TSLOCATION','TSJURGROUP','TSRECLOC','TSRECELEC','TSRECTYPE')
-ORDER BY table_name;
-
-SELECT index_name, table_name, uniqueness, column_name, column_position
-FROM user_ind_columns
-WHERE table_name IN ('TSRECORD','TSEXFIELD','TSEXFIELDV','TSLOCATION','TSJURGROUP','TSRECLOC','TSRECELEC','TSRECTYPE')
-ORDER BY table_name, index_name, column_position;
-
--- DDL completo pronto (alternativa mais rápida às 3 queries acima)
-SELECT DBMS_METADATA.GET_DDL('TABLE', table_name) FROM user_tables
-WHERE table_name IN ('TSRECORD','TSEXFIELD','TSEXFIELDV','TSLOCATION','TSJURGROUP','TSRECLOC','TSRECELEC','TSRECTYPE');
-```
-
-### 4.2 Dicionário real dos campos customizados (resolve a lacuna da seção 3.3)
+### 4.1 Dicionário real dos campos customizados (resolve a lacuna 3.3)
 
 ```sql
 SELECT URI, EXFIELDNAME FROM TSEXFIELD ORDER BY EXFIELDNAME;
 ```
 
-### 4.3 Volume de dados (resolve a lacuna "Volume Estimado: A definir" dos planos anteriores)
+### 4.2 Volume de dados (resolve a lacuna "Volume Estimado: A definir" dos planos anteriores)
 
 ```sql
 SELECT 'TSRECORD' tabela, COUNT(*) linhas FROM TSRECORD
@@ -200,8 +179,8 @@ Mantém o esqueleto de fases dos documentos anteriores (`plano-migracao-oracle-p
 
 | Fase | Conteúdo | Pré-requisito |
 |---|---|---|
-| **0 — Destravar** (agora) | Rodar script da seção 4 contra homologação | Nenhum — acionável imediatamente |
-| **1 — Schema e setup Postgres** | Fechar DDL da seção 3 com dados reais da Fase 0; setup PostgreSQL 15 (`pg_trgm`, `unaccent` para busca) | Fase 0 |
+| **0 — Destravar** | ~~Obter DDL real do Oracle~~ concluído. Restam as 2 queries de dados da seção 4 (campos customizados, volume) | Nenhum — acionável imediatamente |
+| **1 — Schema e setup Postgres** | Fechar DDL da seção 3 com o resultado da seção 4; setup PostgreSQL 15 (`pg_trgm`, `unaccent` para busca) | Fase 0 |
 | **2 — Backend** | Laravel 11 + Eloquent, portar regras de `DAOTrim`/`Operacao*` (autenticação, geração de numeração via `contadores_numeracao`, upload) | Fase 1 |
 | **3 — Frontend** | Blade + Livewire dentro do próprio Laravel (confirmado) — sem API/SPA separada, sem overhead de token/CORS para o time atual (1 programadora + 2 apoio) | Fase 2 em paralelo |
 | **4 — Migração de dados** | Migração completa do histórico para o Postgres novo (corte definitivo, sem manter o TRIM em paralelo); escolha de downtime completo vs. incremental conforme volume (Fase 0) | Fase 1 |
